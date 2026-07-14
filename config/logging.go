@@ -13,7 +13,6 @@ func init() {
 		// messages to the logs. The name specified in this option should match
 		// one of the channels defined in the "channels" configuration array.
 		"default": config.Env("LOG_CHANNEL", "stack"),
-
 		// Log Channels
 		//
 		// Here you may configure the log channels for your application.
@@ -39,6 +38,10 @@ func init() {
 				"days":      7,
 				"print":     false,
 				"formatter": "text",
+			},
+			"otel": map[string]any{
+				"driver":          "otel",
+				"instrument_name": config.GetString("APP_NAME", "goravel/log"),
 			},
 		},
 	})

@@ -2,7 +2,6 @@ package bootstrap
 
 import (
 	"github.com/goravel/framework/contracts/database/schema"
-
 	"goravel/database/migrations"
 )
 

@@ -24,5 +24,6 @@ func Web() {
 		router.Get("/users", userController.Index)
 	})
 
+	facades.Route().Static("build", "./public/build")
 	facades.Route().Static("public", "./public")
 }

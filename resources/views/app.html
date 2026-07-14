@@ -6,7 +6,7 @@
     <title>Goravel</title>
     {{ .inertiaHead }}
     {{ viteReactRefresh }}
-    {{ vite "resources/js/app.tsx" }}
+    <script type="module" src="{{ vite "resources/js/app.tsx" }}"></script>
 </head>
 <body class="antialiased">
     {{ .inertia }}

@@ -1,20 +1,20 @@
 package config
 
 import (
-	"html/template"
-
 	"github.com/gin-gonic/gin/render"
+	fiberfacades "github.com/goravel/fiber/facades"
 	"github.com/goravel/framework/contracts/route"
 	"github.com/goravel/gin"
 	ginfacades "github.com/goravel/gin/facades"
 	"goravel/app/facades"
 	"goravel/app/helpers"
+	"html/template"
 )
 
 func init() {
 	config := facades.Config()
 	config.Add("http", map[string]any{
-		"default": "gin",
+		"default": "fiber",
 		// HTTP Drivers
 		"drivers": map[string]any{
 			"gin": map[string]any{
@@ -32,6 +32,18 @@ func init() {
 							"viteReactRefresh": helpers.ViteReactRefresh,
 						},
 					})
+				},
+			},
+			"fiber": map[string]any{
+				// immutable mode, see https://docs.gofiber.io/#zero-allocation
+				// WARNING: This option is dangerous. Only change it if you fully understand the potential consequences.
+				"immutable": true,
+				// prefork mode, see https://docs.gofiber.io/api/fiber/#config
+				"prefork":      false,
+				"body_limit":   4096,
+				"header_limit": 4096,
+				"route": func() (route.Route, error) {
+					return fiberfacades.Route("fiber"), nil
 				},
 			},
 		},
